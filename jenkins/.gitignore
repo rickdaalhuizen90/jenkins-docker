@@ -1,0 +1,16 @@
+/*
+
+!*/
+!.gitignore
+!docker-compose*.yaml
+!Dockerfile
+!Jenkins
+!README.md
+!*.groovy
+
+!/casc.d/*
+
+/secrets/*
+!/secrets/.gitkeep
+
+!/plugins.txt

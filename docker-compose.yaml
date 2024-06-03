@@ -1,0 +1,26 @@
+services:
+  jenkins:
+    build: ./jenkins
+    container_name: jenkins
+    privileged: true
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins:/var/jenkins_home:rw
+      - ./jenkins/casc.d:/var/jenkins_home/casc.d:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JENKINS_EXT_URL=http://localhost:8080
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/casc.d/
+      - GITHUB_APP_ID
+      - GITHUB_APP_KEY
+      - org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true
+      - PUBLIC_IP
+
+volumes:
+  jenkins:
+
+networks:
+  jenkins-network:
+    driver: bridge
